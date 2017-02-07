@@ -34,7 +34,6 @@ public class NumberPickerAdapter extends RecyclerView.Adapter<NumberPickerAdapte
         this.itemClickCallBack = itemClickCallBack;
         initList(start,last);
         instance = this;
-
     }
 
     @Override
@@ -58,6 +57,7 @@ public class NumberPickerAdapter extends RecyclerView.Adapter<NumberPickerAdapte
         for (int i=start;i<=last;i++){
             dataList.add(new IntervalModel(i,false));
         }
+        dataList.get(0).setHasFocus(true);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class NumberPickerAdapter extends RecyclerView.Adapter<NumberPickerAdapte
         return dataList.size();
     }
 
-    int focusedItem = -1;
+    int focusedItem = 0;
 
     class DialogViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView number;
@@ -97,13 +97,13 @@ public class NumberPickerAdapter extends RecyclerView.Adapter<NumberPickerAdapte
                     dataList.get(getLayoutPosition()).setHasFocus(true);
                     notifyItemChanged(getLayoutPosition());
                 }
-                itemClickCallBack.onItemClicked(dataList.get(getLayoutPosition()).getValue());
+                itemClickCallBack.onItemClicked(dataList.get(getLayoutPosition()).getValue(),getLayoutPosition());
             }
         }
     }
 
     public interface ItemClickCallBack {
-        public void onItemClicked(int value);
+        public void onItemClicked(int value,int position);
     }
 
 }

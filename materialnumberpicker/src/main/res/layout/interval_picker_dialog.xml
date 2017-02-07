@@ -24,12 +24,12 @@
 
             <EditText
                 android:id="@+id/dialog_selected_value"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="2010"
-                android:background="null"
+                android:ellipsize="end"
+                android:background="@color/MPD_primaryColor"
                 android:inputType="numberSigned|numberDecimal"
                 android:textAppearance="?android:textAppearanceLarge"
                 android:textColor="@color/MPD_pickerSelectedTextColor"
@@ -51,7 +51,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:clipToPadding="false"
-                android:paddingTop="10dp"
+                android:paddingTop="80dp"
+                android:paddingBottom="80dp"
                 />
         </RelativeLayout>
 

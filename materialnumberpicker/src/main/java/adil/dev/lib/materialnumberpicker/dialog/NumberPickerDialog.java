@@ -6,7 +6,9 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SnapHelper;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
@@ -64,13 +66,24 @@ public class NumberPickerDialog extends Dialog implements NumberPickerAdapter.It
     private void initValues(){
 
     }
+    LinearLayoutManager linearLayoutManager;
     private void initValuesInViews(){
-        recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        linearLayoutManager=new LinearLayoutManager(mContext,LinearLayoutManager.VERTICAL,false);
+        recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         if(last-start<=-1)
             recyclerView.setItemViewCacheSize(100000);
         else
             recyclerView.setItemViewCacheSize(last - start);
+        selectedTextView.setText(String.valueOf(start));
+        selectNumber=start;
+
+//        SnapHelper snapHelperTop = new GravitySnapHelper(Gravity.TOP);
+//        snapHelperTop.attachToRecyclerView(recyclerView);
+
+        SnapHelper snapHelper = new LinearSnapHelper();
+        snapHelper.attachToRecyclerView(recyclerView);
+
         recyclerView.setAdapter(new NumberPickerAdapter(mContext,this,start,last));
     }
     private void setOnClickListener(){
@@ -90,9 +103,10 @@ public class NumberPickerDialog extends Dialog implements NumberPickerAdapter.It
     }
 
     @Override
-    public void onItemClicked(int selectedNumber) {
+    public void onItemClicked(int selectedNumber,int position) {
         this.selectNumber=selectedNumber;
         selectedTextView.setText(String.valueOf(selectedNumber));
+        linearLayoutManager.scrollToPositionWithOffset(position,0);
     }
 
     public interface NumberPickerCallBack {
