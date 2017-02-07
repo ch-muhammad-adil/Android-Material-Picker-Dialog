@@ -48,8 +48,6 @@ public class GenderAdapter extends RecyclerView.Adapter<GenderAdapter.DialogView
             holder.number.setBackgroundResource(R.drawable.ic_round_shape_selected);
             holder.number.setTextColor(ContextCompat.getColor(mContext,R.color.MPD_pickerItemTextColorSelected));
         } else {
-//            holder.itemParent.setCardBackgroundColor(ContextCompat.getColor(mContext,android.R.color.transparent));
-//            holder.number.setTextColor((ContextCompat.getColor(mContext,android.R.color.white)));
             holder.number.setBackgroundResource(R.drawable.ic_round_shape_unselected);
             holder.number.setTextColor(ContextCompat.getColor(mContext,R.color.MPD_pickerItemTextColorUnSelected));
         }
