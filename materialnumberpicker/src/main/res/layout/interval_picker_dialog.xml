@@ -4,20 +4,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="@color/background_floating_material_dark"
     android:layout_gravity="center"
+    app:cardBackgroundColor="@color/background_floating_material_dark"
     >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/MPD_backGroundColor"
         android:orientation="vertical">
 
         <android.support.v7.widget.CardView
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            app:cardBackgroundColor="@color/accentColor"
+            app:cardBackgroundColor="@color/MPD_primaryColor"
             app:cardElevation="0dp"
             >
 
@@ -27,50 +28,56 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="Select number"
+                android:text="2010"
                 android:textAppearance="?android:textAppearanceLarge"
+                android:textColor="@color/MPD_pickerSelectedTextColor"
+                android:textSize="40sp"
                 />
 
         </android.support.v7.widget.CardView>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="250dp"
-            android:layout_height="match_parent"
-            android:background="@color/background_floating_material_dark"
+            android:layout_height="250dp"
             android:layout_gravity="center"
-            android:orientation="vertical">
+            android:background="@color/MPD_backGroundColor"
+            >
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
-                android:layout_width="100dp"
-                android:layout_height="300dp"
-                android:paddingTop="10dp"
-                android:layout_marginLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:clipToPadding="false"
-                android:layout_gravity="center"
+                android:paddingTop="10dp"
                 />
-        </LinearLayout>
+        </RelativeLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:background="@color/background_floating_material_dark"
-            android:layout_height="wrap_content">
+            android:background="@color/MPD_backGroundColor">
+
             <TextView
                 android:id="@+id/cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:textAppearanceMedium"
                 android:layout_margin="15dp"
-                android:textColor="@color/accentColor"
-                android:text="cancel"/>
+                android:text="cancel"
+                android:textAllCaps="true"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@color/MPD_primaryColor"/>
+
             <TextView
                 android:id="@+id/ok"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:textAppearanceMedium"
-                android:textColor="@color/accentColor"
                 android:layout_margin="15dp"
-                android:text="done"/>
+                android:text="done"
+                android:textAllCaps="true"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@color/MPD_primaryColor"/>
         </LinearLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>

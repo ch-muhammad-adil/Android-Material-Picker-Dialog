@@ -45,13 +45,12 @@ public class NumberPickerAdapter extends RecyclerView.Adapter<NumberPickerAdapte
     @Override
     public void onBindViewHolder(DialogViewHolder holder, int position) {
         holder.number.setText(dataList.get(position).getValue()+"");
-        if(dataList.get(position).isHasFocus()){
-            holder.itemParent.setCardBackgroundColor(ContextCompat.getColor(mContext,R.color.highlighter_transparent));
-//            holder.number.setTextColor(mContext.getResources().getColor(R.color.counter_text_color));
-            holder.number.setTextColor(ContextCompat.getColor(mContext,R.color.accentColor));
+        if (dataList.get(position).isHasFocus()) {
+            holder.number.setBackgroundResource(R.drawable.ic_round_shape_selected);
+            holder.number.setTextColor(ContextCompat.getColor(mContext,R.color.MPD_pickerItemTextColorSelected));
         } else {
-            holder.itemParent.setCardBackgroundColor(ContextCompat.getColor(mContext,android.R.color.transparent));
-            holder.number.setTextColor(ContextCompat.getColor(mContext,android.R.color.white));
+            holder.number.setBackgroundResource(R.drawable.ic_round_shape_unselected);
+            holder.number.setTextColor(ContextCompat.getColor(mContext,R.color.MPD_pickerItemTextColorUnSelected));
         }
     }
 

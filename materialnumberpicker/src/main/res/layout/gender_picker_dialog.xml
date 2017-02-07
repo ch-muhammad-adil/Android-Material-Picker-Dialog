@@ -63,6 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:text="Cancel"
+                android:textAllCaps="true"
                 android:textAppearance="?android:textAppearanceMedium"
                 android:textColor="@color/MPD_primaryColor"/>
 
@@ -72,6 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:text="Ok"
+                android:textAllCaps="true"
                 android:textAppearance="?android:textAppearanceMedium"
                 android:textColor="@color/MPD_primaryColor"/>
         </LinearLayout>

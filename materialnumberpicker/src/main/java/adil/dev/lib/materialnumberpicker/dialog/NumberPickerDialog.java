@@ -52,11 +52,12 @@ public class NumberPickerDialog extends Dialog implements NumberPickerAdapter.It
     }
 
     RecyclerView recyclerView;
-    TextView okView,cancelView;
+    TextView okView,cancelView,selectedTextView;
     private void initViews(){
         recyclerView=(RecyclerView)findViewById(R.id.recyclerView);
         okView=(TextView)findViewById(R.id.ok);
         cancelView=(TextView)findViewById(R.id.cancel);
+        selectedTextView = (TextView) findViewById(R.id.dialog_selected_value);
     }
     private void initValues(){
 
@@ -65,7 +66,7 @@ public class NumberPickerDialog extends Dialog implements NumberPickerAdapter.It
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         if(last-start<=-1)
-            recyclerView.setItemViewCacheSize(1000);
+            recyclerView.setItemViewCacheSize(100000);
         else
             recyclerView.setItemViewCacheSize(last - start);
         recyclerView.setAdapter(new NumberPickerAdapter(mContext,this,start,last));
@@ -89,6 +90,7 @@ public class NumberPickerDialog extends Dialog implements NumberPickerAdapter.It
     @Override
     public void onItemClicked(int selectedNumber) {
         this.selectNumber=selectedNumber;
+        selectedTextView.setText(String.valueOf(selectedNumber));
     }
 
     public interface NumberPickerCallBack {

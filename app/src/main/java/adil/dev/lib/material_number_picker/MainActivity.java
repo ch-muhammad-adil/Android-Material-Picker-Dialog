@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.number_picker).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NumberPickerDialog dialog=new NumberPickerDialog(MainActivity.this, 0, 24, new NumberPickerDialog.NumberPickerCallBack() {
+                NumberPickerDialog dialog=new NumberPickerDialog(MainActivity.this, -5, 24, new NumberPickerDialog.NumberPickerCallBack() {
                     @Override
                     public void onSelectingValue(int value) {
 
