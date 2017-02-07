@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.Window;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import adil.dev.lib.materialnumberpicker.R;
@@ -52,12 +53,13 @@ public class NumberPickerDialog extends Dialog implements NumberPickerAdapter.It
     }
 
     RecyclerView recyclerView;
-    TextView okView,cancelView,selectedTextView;
+    TextView okView,cancelView;
+    EditText selectedTextView;
     private void initViews(){
         recyclerView=(RecyclerView)findViewById(R.id.recyclerView);
         okView=(TextView)findViewById(R.id.ok);
         cancelView=(TextView)findViewById(R.id.cancel);
-        selectedTextView = (TextView) findViewById(R.id.dialog_selected_value);
+        selectedTextView = (EditText) findViewById(R.id.dialog_selected_value);
     }
     private void initValues(){
 

@@ -22,13 +22,15 @@
             app:cardElevation="0dp"
             >
 
-            <TextView
+            <EditText
                 android:id="@+id/dialog_selected_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="2010"
+                android:background="null"
+                android:inputType="numberSigned|numberDecimal"
                 android:textAppearance="?android:textAppearanceLarge"
                 android:textColor="@color/MPD_pickerSelectedTextColor"
                 android:textSize="40sp"
