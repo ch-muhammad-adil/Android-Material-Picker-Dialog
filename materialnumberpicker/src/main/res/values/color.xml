@@ -10,9 +10,9 @@
     <color name="MPD_primaryColor">#3F51B5</color>
     <color name="MPD_primaryColorLight">#C5CAE9</color>
     <color name="MPD_backGroundColor">#FFF</color>
+    <color name="MPD_pickerSelectedTextColor">#FFF</color>
     <color name="MPD_pickerItemColorUnSelected">#00FFFFFF</color>
     <color name="MPD_pickerItemColorSelected">@color/MPD_primaryColor</color>
     <color name="MPD_pickerItemTextColorUnSelected">#444</color>
-    <color name="MPD_pickerItemTextColorSelected">#fff</color>
-
+    <color name="MPD_pickerItemTextColorSelected">#ccffffff</color>
 </resources>

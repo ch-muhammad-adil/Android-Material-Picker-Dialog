@@ -3,4 +3,18 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+
+
+    <!--use these color attributes to customize Material Picker Dialog-->
+
+    <color name="MPD_primaryColor">#15661c</color>
+    <color name="MPD_primaryColorLight">#C5CAE9</color>
+    <color name="MPD_backGroundColor">#FFF</color>
+    <color name="MPD_pickerItemColorUnSelected">#00FFFFFF</color>
+    <color name="MPD_pickerItemColorSelected">@color/MPD_primaryColor</color>
+    <color name="MPD_pickerItemTextColorUnSelected">#444</color>
+    <color name="MPD_pickerItemTextColorSelected">#bbffffff</color>
+    <color name="MPD_pickerSelectedTextColor">#FFF</color>
+
 </resources>
