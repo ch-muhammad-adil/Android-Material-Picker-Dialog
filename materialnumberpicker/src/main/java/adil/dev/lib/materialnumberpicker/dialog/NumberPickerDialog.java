@@ -110,7 +110,7 @@ public class NumberPickerDialog extends Dialog implements NumberPickerAdapter.It
                     }else if(value>last){
                         selectedTextView.setText(String.valueOf(last));
                         selectedTextView.setError("value must be in between "+start+" and "+last);
-                        vb.vibrate(30);
+                        vb.vibrate(50);
                     }
                 }catch (NumberFormatException e){
                     selectedTextView.setError("value must be in between "+start+" and "+last);
