@@ -55,8 +55,8 @@ public class GenderAdapter extends RecyclerView.Adapter<GenderAdapter.DialogView
 
     private void initList() {
 
-        dataList.add(new GenderModel("Male", true));
-        dataList.add(new GenderModel("Female", false));
+        dataList.add(new GenderModel(mContext.getString(R.string.MPD_male), true));
+        dataList.add(new GenderModel(mContext.getString(R.string.MPD_female), false));
 
     }
 

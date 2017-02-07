@@ -61,10 +61,10 @@ public class GenderPickerDialog extends Dialog {
     }
 
     private void initValues() {
-
+        selectedString= mContext.getString(R.string.MPD_male);
     }
 
-    String selectedString="Male";
+    String selectedString="";
     private void initValuesInViews() {
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         recyclerView.setItemAnimator(new DefaultItemAnimator());

@@ -17,7 +17,7 @@
         <android.support.v7.widget.CardView
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="@dimen/MPD_top_bar_height"
             app:cardBackgroundColor="@color/MPD_primaryColor"
             app:cardElevation="0dp"
             >
@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="Male"
+                android:text="@string/MPD_male"
                 android:textColor="@color/MPD_pickerSelectedTextColor"
                 android:textSize="40sp"
                 />
@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:text="Cancel"
+                android:text="@string/MPD_action_cancel"
                 android:textAllCaps="true"
                 android:textAppearance="?android:textAppearanceMedium"
                 android:textColor="@color/MPD_primaryColor"/>
@@ -72,7 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:text="Ok"
+                android:text="@string/MPD_action_done"
                 android:textAllCaps="true"
                 android:textAppearance="?android:textAppearanceMedium"
                 android:textColor="@color/MPD_primaryColor"/>

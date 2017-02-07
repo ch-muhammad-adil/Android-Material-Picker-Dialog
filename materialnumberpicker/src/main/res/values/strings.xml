@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MaterialNumberPicker</string>
+
+    <string name="MPD_action_done">done</string>
+    <string name="MPD_action_cancel">cancel</string>
+    <string name="MPD_male">Male</string>
+    <string name="MPD_female">Female</string>
 </resources>
