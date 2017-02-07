@@ -39,7 +39,7 @@ public class NumberPickerAdapter extends RecyclerView.Adapter<NumberPickerAdapte
 
     @Override
     public DialogViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new DialogViewHolder(inflater.inflate(R.layout.interval_picker_item, parent, false));
+        return new DialogViewHolder(inflater.inflate(R.layout.picker_item, parent, false));
     }
 
     @Override

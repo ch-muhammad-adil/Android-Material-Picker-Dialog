@@ -51,28 +51,31 @@ public class GenderPickerDialog extends Dialog {
     }
 
     RecyclerView recyclerView;
-    TextView okView, cancelView;
+    TextView okView, cancelView,selectedTextView;
 
     private void initViews() {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         okView = (TextView) findViewById(R.id.ok);
         cancelView = (TextView) findViewById(R.id.cancel);
+        selectedTextView = (TextView) findViewById(R.id.dialog_selected_value);
     }
 
     private void initValues() {
 
     }
 
-    String selectedString;
+    String selectedString="Male";
     private void initValuesInViews() {
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setItemViewCacheSize(2);
+        selectedTextView.setText(selectedString);
         GenderAdapter adapter = new GenderAdapter(mContext);
         adapter.setOnItemClickCallBack(new GenderAdapter.ItemClickCallBack() {
             @Override
             public void onItemClicked(String gender) {
                 selectedString=gender;
+                selectedTextView.setText(selectedString);
             }
         });
         recyclerView.setAdapter(adapter);
