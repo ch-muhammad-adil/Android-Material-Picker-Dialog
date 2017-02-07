@@ -4,11 +4,14 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SnapHelper;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
@@ -20,7 +23,7 @@ import adil.dev.lib.materialnumberpicker.adapter.NumberPickerAdapter;
 /**
  * Created by Adil on 26/11/2015.
  */
-public class NumberPickerDialog extends Dialog implements NumberPickerAdapter.ItemClickCallBack{
+public class NumberPickerDialog extends Dialog implements NumberPickerAdapter.ItemClickCallBack,NumberPickerAdapter.ValueAvailableListener{
 
     Context mContext;
     int selectNumber=0;
@@ -78,15 +81,48 @@ public class NumberPickerDialog extends Dialog implements NumberPickerAdapter.It
         selectedTextView.setText(String.valueOf(start));
         selectNumber=start;
 
-//        SnapHelper snapHelperTop = new GravitySnapHelper(Gravity.TOP);
-//        snapHelperTop.attachToRecyclerView(recyclerView);
-
         SnapHelper snapHelper = new LinearSnapHelper();
         snapHelper.attachToRecyclerView(recyclerView);
 
-        recyclerView.setAdapter(new NumberPickerAdapter(mContext,this,start,last));
+        recyclerView.setAdapter(new NumberPickerAdapter(mContext,this,this,start,last));
     }
     private void setOnClickListener(){
+
+
+        selectedTextView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                Vibrator vb = (Vibrator)   mContext.getSystemService(Context.VIBRATOR_SERVICE);
+                try {
+                    int value= Integer.parseInt(charSequence.toString());
+
+                    if(value>=start&&value<=last){
+                        ((NumberPickerAdapter)recyclerView.getAdapter()).findForItemToShow(value);
+                    }else if(value<start){
+                        selectedTextView.setText(String.valueOf(start));
+                        selectedTextView.setError("value must be in between "+start+" and "+last);
+                        vb.vibrate(50);
+                    }else if(value>last){
+                        selectedTextView.setText(String.valueOf(last));
+                        selectedTextView.setError("value must be in between "+start+" and "+last);
+                        vb.vibrate(30);
+                    }
+                }catch (NumberFormatException e){
+                    selectedTextView.setError("value must be in between "+start+" and "+last);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         cancelView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,6 +142,12 @@ public class NumberPickerDialog extends Dialog implements NumberPickerAdapter.It
     public void onItemClicked(int selectedNumber,int position) {
         this.selectNumber=selectedNumber;
         selectedTextView.setText(String.valueOf(selectedNumber));
+        selectedTextView.setError(null);
+        linearLayoutManager.scrollToPositionWithOffset(position,0);
+    }
+
+    @Override
+    public void onValueAvailable(int position) {
         linearLayoutManager.scrollToPositionWithOffset(position,0);
     }
 

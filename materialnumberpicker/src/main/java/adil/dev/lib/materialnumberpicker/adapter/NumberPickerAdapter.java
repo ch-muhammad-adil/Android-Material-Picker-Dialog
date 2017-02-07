@@ -25,13 +25,14 @@ public class NumberPickerAdapter extends RecyclerView.Adapter<NumberPickerAdapte
     LayoutInflater inflater;
     ArrayList<IntervalModel> dataList = new ArrayList<>();
     ItemClickCallBack itemClickCallBack;
-
+    ValueAvailableListener valueAvailableListener;
     NumberPickerAdapter instance;
 
-    public NumberPickerAdapter(Context context, ItemClickCallBack itemClickCallBack, int start, int last) {
+    public NumberPickerAdapter(Context context, ItemClickCallBack itemClickCallBack,ValueAvailableListener valueAvailableListener, int start, int last) {
         this.mContext = context;
         inflater = LayoutInflater.from(context);
         this.itemClickCallBack = itemClickCallBack;
+        this.valueAvailableListener=valueAvailableListener;
         initList(start,last);
         instance = this;
     }
@@ -39,6 +40,31 @@ public class NumberPickerAdapter extends RecyclerView.Adapter<NumberPickerAdapte
     @Override
     public DialogViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new DialogViewHolder(inflater.inflate(R.layout.picker_item, parent, false));
+    }
+
+    public void findForItemToShow(int value){
+        int position=-1;
+        for(int i=0;i<dataList.size();i++){
+            if(dataList.get(i).getValue()==value){
+                position=i;
+                break;
+            }
+        }
+        if(position!=-1){
+            if(focusedItem<=-1) {
+                focusedItem=position;
+                dataList.get(position).setHasFocus(true);
+                notifyItemChanged(position);
+            }else{
+                dataList.get(focusedItem).setHasFocus(false);
+                notifyItemChanged(focusedItem);
+                focusedItem=position;
+                dataList.get(position).setHasFocus(true);
+                notifyItemChanged(position);
+            }
+            valueAvailableListener.onValueAvailable(position);
+        }
+
     }
 
     @Override
@@ -71,15 +97,12 @@ public class NumberPickerAdapter extends RecyclerView.Adapter<NumberPickerAdapte
         TextView number;
         CardView itemParent;
 
-
         public DialogViewHolder(View itemView) {
             super(itemView);
             number = (TextView) itemView.findViewById(R.id.text_number);
             itemParent = (CardView) itemView.findViewById(R.id.item_parent);
             itemParent.setOnClickListener(this);
-
         }
-
 
         @Override
         public void onClick(View v) {
@@ -104,6 +127,9 @@ public class NumberPickerAdapter extends RecyclerView.Adapter<NumberPickerAdapte
 
     public interface ItemClickCallBack {
         public void onItemClicked(int value,int position);
+    }
+    public interface ValueAvailableListener{
+        public void onValueAvailable(int position);
     }
 
 }
