@@ -3,11 +3,11 @@ package adil.dev.lib.materialnumberpicker.adapter;
 import android.content.Context;
 import android.os.Vibrator;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -95,12 +95,12 @@ public class NumberPickerAdapter extends RecyclerView.Adapter<NumberPickerAdapte
 
     class DialogViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView number;
-        CardView itemParent;
+        FrameLayout itemParent;
 
         public DialogViewHolder(View itemView) {
             super(itemView);
             number = (TextView) itemView.findViewById(R.id.text_number);
-            itemParent = (CardView) itemView.findViewById(R.id.item_parent);
+            itemParent = (FrameLayout) itemView.findViewById(R.id.item_parent);
             itemParent.setOnClickListener(this);
         }
 

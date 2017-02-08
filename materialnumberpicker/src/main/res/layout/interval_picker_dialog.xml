@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
+    app:cardPreventCornerOverlap="false"
+    app:cardCornerRadius="@dimen/dialog_corner_radius"
     app:cardBackgroundColor="@color/background_floating_material_dark"
     >
 
@@ -19,7 +21,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/MPD_top_bar_height"
             app:cardBackgroundColor="@color/MPD_primaryColor"
-            app:cardElevation="0dp"
+            app:cardElevation="2dp"
+            app:cardCornerRadius="0dp"
             >
 
             <EditText
