@@ -9,8 +9,6 @@ android {
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
-
-
     }
     buildTypes {
         release {
@@ -28,3 +26,6 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.1.1'
 
 }
+apply from: 'bintray.gradle'
+apply from: 'install.gradle'
+

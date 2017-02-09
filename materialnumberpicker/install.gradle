@@ -1,0 +1,39 @@
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = 'com.github.ch-muhammad-adil'
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'aar'
+                groupId 'com.github.ch-muhammad-adil'
+                artifactId 'MPD'
+
+                name 'MaterialPickerDialog'
+                description 'Simple Material Picker Dialog Library which offer developers different kind of material dialogs like, gender picker, number picker.'
+                url 'https://github.com/ch-muhammad-adil/Android-Material-Picker-Dialog'
+
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'ch-muhammad-adil'
+                        name 'Muhammad Adil'
+                        email 'chmuhammadadil7@gmail.com'
+                    }
+                }
+                scm {
+                    connection 'https://github.com/ch-muhammad-adil/Android-Material-Picker-Dialog.git'
+                    developerConnection 'https://github.com/ch-muhammad-adil/Android-Material-Picker-Dialog.git'
+                    url 'https://github.com/ch-muhammad-adil/Android-Material-Picker-Dialog'
+
+                }
+            }
+        }
+    }
+}

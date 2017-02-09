@@ -1,0 +1,62 @@
+apply plugin: 'com.jfrog.bintray'
+
+version = '0.0.1'
+
+if (project.hasProperty("android")) { // Android libraries
+    task sourcesJar(type: Jar) {
+        classifier = 'sources'
+        from android.sourceSets.main.java.srcDirs
+    }
+
+    task javadoc(type: Javadoc) {
+        source = android.sourceSets.main.java.srcDirs
+        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    }
+} else { // Java libraries
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+// Bintray
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+
+    configurations = ['archives']
+    pkg {
+        repo = 'maven'
+        name = 'AndroidMaterialPickerDialog'
+        desc = 'Simple Material Picker Dialog Library which offer developers different kind of material dialogs like, gender picker, number picker.'
+        websiteUrl = 'https://github.com/ch-muhammad-adil/Android-Material-Picker-Dialog'
+        issueTrackerUrl = websiteUrl+'/issues'
+        vcsUrl = 'https://github.com/ch-muhammad-adil/Android-Material-Picker-Dialog.git'
+        licenses = ["Apache-2.0"]
+        githubRepo = 'https://github.com/ch-muhammad-adil/Android-Material-Picker-Dialog' //Optional Github repository
+        githubReleaseNotesFile = 'README.md' //Optional Github readme file
+        publish = true
+        publicDownloadNumbers = true
+        version {
+            desc = 'Simple Material Picker Dialog Library which offer developers different kind of material dialogs like, gender picker, number picker.'
+            gpg {
+                sign = true //Determines whether to GPG sign the files. The default is false
+                passphrase = properties.getProperty("bintray.gpg.password")
+                //Optional. The passphrase for GPG signing'
+            }
+        }
+    }
+}
