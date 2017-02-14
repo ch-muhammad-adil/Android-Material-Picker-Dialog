@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AndroidMaterialNumberPickerDialog.iml" filepath="$PROJECT_DIR$/AndroidMaterialNumberPickerDialog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MaterialPickerDialog/MaterialPickerDialog.iml" filepath="$PROJECT_DIR$/MaterialPickerDialog/MaterialPickerDialog.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/materialnumberpicker/materialnumberpicker.iml" filepath="$PROJECT_DIR$/materialnumberpicker/materialnumberpicker.iml" />
     </modules>
   </component>
 </project>

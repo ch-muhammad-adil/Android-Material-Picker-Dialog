@@ -1,1 +1,1 @@
-include ':app', ':materialnumberpicker'
+include ':app', ':MaterialPickerDialog'
