@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.number_picker).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NumberPickerDialog dialog=new NumberPickerDialog(MainActivity.this, -5, 100, new NumberPickerDialog.NumberPickerCallBack() {
+                NumberPickerDialog dialog=new NumberPickerDialog(MainActivity.this, 100, -5, new NumberPickerDialog.NumberPickerCallBack() {
                     @Override
                     public void onSelectingValue(int value) {
                         Toast.makeText(MainActivity.this, "Selected "+String.valueOf(value), Toast.LENGTH_SHORT).show();

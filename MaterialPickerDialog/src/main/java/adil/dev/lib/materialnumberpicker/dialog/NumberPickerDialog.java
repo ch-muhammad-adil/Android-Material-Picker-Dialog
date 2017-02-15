@@ -34,6 +34,9 @@ public class NumberPickerDialog extends Dialog implements NumberPickerAdapter.It
 
     public NumberPickerDialog(Context context, int start, int last, NumberPickerCallBack callBack) {
         super(context);
+        if(start>last){
+            throw new IllegalStateException("Start value must be smaller than last value");
+        }
         this.callBack = callBack;
         this.mContext = context;
         this.selectNumber = start;
@@ -110,16 +113,16 @@ public class NumberPickerDialog extends Dialog implements NumberPickerAdapter.It
                     if (value >= start && value <= last) {
                         ((NumberPickerAdapter) recyclerView.getAdapter()).findForItemToShow(value);
                     } else if (value < start) {
-                        selectedTextView.setText(String.valueOf(start));
-                        selectedTextView.setError("value must be in between " + start + " and " + last);
+                        selectNumber = value;
+//                        selectedTextView.setError("value can not be lower than " + start);
                         vb.vibrate(50);
                     } else if (value > last) {
-                        selectedTextView.setText(String.valueOf(last));
-                        selectedTextView.setError("value must be in between " + start + " and " + last);
+                        selectNumber = value;
+//                        selectedTextView.setError("value can not be higher than " + last);
                         vb.vibrate(50);
                     }
                 } catch (NumberFormatException e) {
-                    selectedTextView.setError("value must be in between " + start + " and " + last);
+                    selectedTextView.setError(mContext.getString(R.string.MPD_empty_message));
                 }
             }
 
@@ -138,8 +141,10 @@ public class NumberPickerDialog extends Dialog implements NumberPickerAdapter.It
         okView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (selectedTextView.getText().toString().equals("")) {
-                    selectedTextView.setError("value must be in between " + start + " and " + last);
+                if (selectedTextView.getText().toString().isEmpty()||selectedTextView.getText().toString().equals("-")) {
+                    selectedTextView.setError(mContext.getString(R.string.MPD_empty_message));
+                } else if (selectNumber < start || selectNumber > last) {
+                    selectedTextView.setError(mContext.getString(R.string.MPD_incorrect_message));
                 } else {
                     callBack.onSelectingValue(selectNumber);
                     dismiss();
@@ -157,8 +162,8 @@ public class NumberPickerDialog extends Dialog implements NumberPickerAdapter.It
     }
 
     @Override
-    public void onValueAvailable(int value,int position) {
-        this.selectNumber=value;
+    public void onValueAvailable(int value, int position) {
+        this.selectNumber = value;
         linearLayoutManager.scrollToPositionWithOffset(position, 0);
     }
 

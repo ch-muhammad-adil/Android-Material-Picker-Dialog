@@ -5,4 +5,6 @@
     <string name="MPD_action_cancel">cancel</string>
     <string name="MPD_male">Male</string>
     <string name="MPD_female">Female</string>
+    <string name="MPD_empty_message">value can not be empty</string>
+    <string name="MPD_incorrect_message">please select correct value</string>
 </resources>
