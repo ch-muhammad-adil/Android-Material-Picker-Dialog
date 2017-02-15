@@ -109,6 +109,12 @@ You can update any text and message or you can add localization using these attr
 
 ```
 
+##TODO
+* Number Picker Requires support for reverse ordering
+* Orientation change control is not handled yet in case if user changes orientation and dialog is open
+* Need to add horizontal movement of number picker items
+
+This is my first implementation of any open source library so your suggestions will be really helpful"
 
 ### Licence
 
