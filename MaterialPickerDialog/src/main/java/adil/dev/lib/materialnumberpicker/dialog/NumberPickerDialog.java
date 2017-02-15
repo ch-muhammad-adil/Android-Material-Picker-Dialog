@@ -23,24 +23,25 @@ import adil.dev.lib.materialnumberpicker.adapter.NumberPickerAdapter;
 /**
  * Created by Adil on 26/11/2015.
  */
-public class NumberPickerDialog extends Dialog implements NumberPickerAdapter.ItemClickCallBack,NumberPickerAdapter.ValueAvailableListener{
+public class NumberPickerDialog extends Dialog implements NumberPickerAdapter.ItemClickCallBack, NumberPickerAdapter.ValueAvailableListener {
 
     Context mContext;
-    int selectNumber=0;
-    int start=0;
-    int last=0;
+    int selectNumber = 0;
+    int start = 0;
+    int last = 0;
     NumberPickerCallBack callBack;
-    private static NumberPickerDialog instance=null;
-    public NumberPickerDialog(Context context, int start, int last,NumberPickerCallBack callBack) {
+    private static NumberPickerDialog instance = null;
+
+    public NumberPickerDialog(Context context, int start, int last, NumberPickerCallBack callBack) {
         super(context);
-        this.callBack=callBack;
-        this.mContext=context;
-        this.selectNumber=start;
-        this.start=start;
-        this.last=last;
+        this.callBack = callBack;
+        this.mContext = context;
+        this.selectNumber = start;
+        this.start = start;
+        this.last = last;
     }
 
-    public static NumberPickerDialog getInstance(){
+    public static NumberPickerDialog getInstance() {
         return instance;
     }
 
@@ -50,7 +51,7 @@ public class NumberPickerDialog extends Dialog implements NumberPickerAdapter.It
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.interval_picker_dialog);
         getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        instance=this;
+        instance = this;
         initViews();
         initValues();
         initValuesInViews();
@@ -58,35 +59,40 @@ public class NumberPickerDialog extends Dialog implements NumberPickerAdapter.It
     }
 
     RecyclerView recyclerView;
-    TextView okView,cancelView;
+    TextView okView, cancelView;
     EditText selectedTextView;
-    private void initViews(){
-        recyclerView=(RecyclerView)findViewById(R.id.recyclerView);
-        okView=(TextView)findViewById(R.id.ok);
-        cancelView=(TextView)findViewById(R.id.cancel);
+
+    private void initViews() {
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        okView = (TextView) findViewById(R.id.ok);
+        cancelView = (TextView) findViewById(R.id.cancel);
         selectedTextView = (EditText) findViewById(R.id.dialog_selected_value);
     }
-    private void initValues(){
+
+    private void initValues() {
 
     }
+
     LinearLayoutManager linearLayoutManager;
-    private void initValuesInViews(){
-        linearLayoutManager=new LinearLayoutManager(mContext,LinearLayoutManager.VERTICAL,false);
+
+    private void initValuesInViews() {
+        linearLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        if(last-start<=-1)
+        if (last - start <= -1)
             recyclerView.setItemViewCacheSize(100000);
         else
             recyclerView.setItemViewCacheSize(last - start);
         selectedTextView.setText(String.valueOf(start));
-        selectNumber=start;
+        selectNumber = start;
 
         SnapHelper snapHelper = new LinearSnapHelper();
         snapHelper.attachToRecyclerView(recyclerView);
 
-        recyclerView.setAdapter(new NumberPickerAdapter(mContext,this,this,start,last));
+        recyclerView.setAdapter(new NumberPickerAdapter(mContext, this, this, start, last));
     }
-    private void setOnClickListener(){
+
+    private void setOnClickListener() {
 
 
         selectedTextView.addTextChangedListener(new TextWatcher() {
@@ -97,23 +103,23 @@ public class NumberPickerDialog extends Dialog implements NumberPickerAdapter.It
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                Vibrator vb = (Vibrator)   mContext.getSystemService(Context.VIBRATOR_SERVICE);
+                Vibrator vb = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
                 try {
-                    int value= Integer.parseInt(charSequence.toString());
+                    int value = Integer.parseInt(charSequence.toString());
 
-                    if(value>=start&&value<=last){
-                        ((NumberPickerAdapter)recyclerView.getAdapter()).findForItemToShow(value);
-                    }else if(value<start){
+                    if (value >= start && value <= last) {
+                        ((NumberPickerAdapter) recyclerView.getAdapter()).findForItemToShow(value);
+                    } else if (value < start) {
                         selectedTextView.setText(String.valueOf(start));
-                        selectedTextView.setError("value must be in between "+start+" and "+last);
+                        selectedTextView.setError("value must be in between " + start + " and " + last);
                         vb.vibrate(50);
-                    }else if(value>last){
+                    } else if (value > last) {
                         selectedTextView.setText(String.valueOf(last));
-                        selectedTextView.setError("value must be in between "+start+" and "+last);
+                        selectedTextView.setError("value must be in between " + start + " and " + last);
                         vb.vibrate(50);
                     }
-                }catch (NumberFormatException e){
-                    selectedTextView.setError("value must be in between "+start+" and "+last);
+                } catch (NumberFormatException e) {
+                    selectedTextView.setError("value must be in between " + start + " and " + last);
                 }
             }
 
@@ -132,23 +138,28 @@ public class NumberPickerDialog extends Dialog implements NumberPickerAdapter.It
         okView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callBack.onSelectingValue(selectNumber);
-                dismiss();
+                if (selectedTextView.getText().toString().equals("")) {
+                    selectedTextView.setError("value must be in between " + start + " and " + last);
+                } else {
+                    callBack.onSelectingValue(selectNumber);
+                    dismiss();
+                }
             }
         });
     }
 
     @Override
-    public void onItemClicked(int selectedNumber,int position) {
-        this.selectNumber=selectedNumber;
+    public void onItemClicked(int selectedNumber, int position) {
+        this.selectNumber = selectedNumber;
         selectedTextView.setText(String.valueOf(selectedNumber));
         selectedTextView.setError(null);
-        linearLayoutManager.scrollToPositionWithOffset(position,0);
+        linearLayoutManager.scrollToPositionWithOffset(position, 0);
     }
 
     @Override
-    public void onValueAvailable(int position) {
-        linearLayoutManager.scrollToPositionWithOffset(position,0);
+    public void onValueAvailable(int value,int position) {
+        this.selectNumber=value;
+        linearLayoutManager.scrollToPositionWithOffset(position, 0);
     }
 
     public interface NumberPickerCallBack {

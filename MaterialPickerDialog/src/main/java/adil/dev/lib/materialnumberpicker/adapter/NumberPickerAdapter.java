@@ -62,7 +62,7 @@ public class NumberPickerAdapter extends RecyclerView.Adapter<NumberPickerAdapte
                 dataList.get(position).setHasFocus(true);
                 notifyItemChanged(position);
             }
-            valueAvailableListener.onValueAvailable(position);
+            valueAvailableListener.onValueAvailable(dataList.get(position).getValue(),position);
         }
 
     }
@@ -129,7 +129,7 @@ public class NumberPickerAdapter extends RecyclerView.Adapter<NumberPickerAdapte
         public void onItemClicked(int value,int position);
     }
     public interface ValueAvailableListener{
-        public void onValueAvailable(int position);
+        public void onValueAvailable(int value,int position);
     }
 
 }

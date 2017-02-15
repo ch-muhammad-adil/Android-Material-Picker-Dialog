@@ -8,7 +8,7 @@
 
     <!--use these color attributes to customize Material Picker Dialog-->
 
-    <color name="MPD_primaryColor">#15661c</color>
+    <color name="MPD_primaryColor">@color/primaryColor</color>
     <color name="MPD_primaryColorLight">#C5CAE9</color>
     <color name="MPD_backGroundColor">#FFF</color>
     <color name="MPD_pickerItemColorUnSelected">#00FFFFFF</color>
