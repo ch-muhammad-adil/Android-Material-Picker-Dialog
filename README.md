@@ -7,6 +7,16 @@ It also includes **Material Gender Picker Dialog** which was much required.
 #Screenshots
 ![pickers](https://github.com/ch-muhammad-adil/Android-Material-Picker-Dialog/blob/master/screenshot_1.png?raw=true)![pickers](https://github.com/ch-muhammad-adil/Android-Material-Picker-Dialog/blob/master/screenshot_2.png?raw=true)
 
+
+##Compile Library jCenter
+```groovy
+dependencies {
+    ....
+    compile 'com.github.ch-muhammad-adil:MaterialPickerDialog:1.0.3'
+    ....
+}
+```
+
 ##Compile Library maven
 
 ```groovy
@@ -18,14 +28,6 @@ dependencies {
 }
 ```
 
-##Compile Library jCenter
-```groovy
-dependencies {
-    ....
-    compile 'com.github.ch-muhammad-adil:MaterialPickerDialog:1.0.3'
-    ....
-}
-```
 
 ##Simple Code for Number Picker
 
