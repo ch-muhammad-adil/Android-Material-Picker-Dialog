@@ -19,6 +19,12 @@
         android:layout_gravity="center"
         android:text="Open Number Picker"/>
     <Button
+        android:id="@+id/year_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Open Year Picker"/>
+    <Button
         android:id="@+id/gender_picker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
