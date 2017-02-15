@@ -72,3 +72,40 @@ GenderPickerDialog dialog=new GenderPickerDialog(MainActivity.this);
                 dialog.show();
 
 ```
+
+
+##Color Attributes of Material Picker Dialog
+
+If you override these attributes in your _**colors.xml**_ file under _**res/values**_
+you can customize your **material picker dialog**
+```xml
+
+    <!--use these color attributes to customize Material Picker Dialog-->
+
+    <color name="MPD_primaryColor">@color/primaryColor</color>
+    <color name="MPD_primaryColorLight">#C5CAE9</color>
+    <color name="MPD_backGroundColor">#FFF</color>
+    <color name="MPD_pickerItemColorUnSelected">#00FFFFFF</color>
+    <color name="MPD_pickerItemColorSelected">@color/MPD_primaryColor</color>
+    <color name="MPD_pickerItemTextColorUnSelected">#444</color>
+    <color name="MPD_pickerItemTextColorSelected">#bbffffff</color>
+    <color name="MPD_pickerSelectedTextColor">#FFF</color>
+
+
+```
+
+
+##Localization Attributes
+You can update any text and message or you can add localization using these attributes. You just need to override these **string attributes** in your **_strings.xml_** file under **_res/values_**.
+
+```xml
+
+    <string name="MPD_action_done">done</string>
+    <string name="MPD_action_cancel">cancel</string>
+    <string name="MPD_male">Male</string>
+    <string name="MPD_female">Female</string>
+    <string name="MPD_empty_message">value can not be empty</string>
+    <string name="MPD_incorrect_message">please select correct value</string>
+
+```
+
