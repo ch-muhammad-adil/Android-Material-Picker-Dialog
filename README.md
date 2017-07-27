@@ -72,7 +72,11 @@ GenderPickerDialog dialog=new GenderPickerDialog(MainActivity.this);
                 dialog.show();
 
 ```
+##Do Add permissions for vibration in your menifest file.
 
+```xml
+<uses-permission android:name="android.permission.VIBRATE" />
+```
 
 ##Color Attributes of Material Picker Dialog
 
